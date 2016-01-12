@@ -1,6 +1,6 @@
 import numpy as np
 import math # For the floor
-import scipy
+
 from sklearn import datasets
 
 iris = datasets.load_iris()
@@ -51,6 +51,7 @@ hardCodedClassifier.train(trainingSet)
 hardCodedClassifier.predict(testSet)
 
 correct = hardCodedClassifier.accuracy(testSet)
-print(correct)
+
+# Get the accuracy percentage
 accuracy = (float(correct) / float(thirtySplit)) * 100
 print (accuracy, "% accuracy rate")
