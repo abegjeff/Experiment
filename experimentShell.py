@@ -1,13 +1,12 @@
 import numpy as np
 import math # For the floor
-
+import scipy
 from sklearn import datasets
 
 iris = datasets.load_iris()
 
 #Combine together the iris data with iris targets
 combinedData = np.column_stack((iris.data, iris.target))
-print(combinedData)
 
 #Randomize the data set 100 times
 for i in range(0, 100):
@@ -20,6 +19,7 @@ setLength = len(combinedData)
 seventySplit = int(math.floor(setLength * .7))
 thirtySplit = setLength - seventySplit
 
+
 # Initialize empty array with 0's for the training set and testing set
 trainingSet = np.zeros(shape=(seventySplit, 5))
 testSet = np.zeros(shape=(thirtySplit, 5))
@@ -31,10 +31,6 @@ for i in range(0, seventySplit):
 # Fill the last thirty percent
 for i in range(0, thirtySplit):
 	testSet[i] = combinedData[i + seventySplit]
-
-
-# Strip column 5 first
-
 
 class HardCoded:
 	def train(self, trainingSet):
@@ -55,5 +51,6 @@ hardCodedClassifier.train(trainingSet)
 hardCodedClassifier.predict(testSet)
 
 correct = hardCodedClassifier.accuracy(testSet)
-accuracy = (float(correct) / float(setLength)) * 100
+print(correct)
+accuracy = (float(correct) / float(thirtySplit)) * 100
 print (accuracy, "% accuracy rate")
